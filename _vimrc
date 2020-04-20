@@ -26,12 +26,9 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" No menu bar in gVim
-set guioptions-=m
 " Sets how many lines of history VIM has to remember
 set history=1000
 
@@ -47,11 +44,7 @@ set autoread
 let mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
-
-" :W sudo saves the file 
-" (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+"nmap <leader>w :w!<cr>
 
 " Set starting working directory to user folder
 cd $USERPROFILE
@@ -131,7 +124,7 @@ endif
 set foldcolumn=1
 
 " For startup size
-set lines=50 columns=150
+set lines=40 columns=150
 
 " Line numbers
 set relativenumber
@@ -156,11 +149,12 @@ set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
+    set guioptions-=m " No menu bar in gVim
     set guioptions-=T
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Consolas:h12
+    set guifont=Consolas:h14
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -337,6 +331,10 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" Vimwiki stuff
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
